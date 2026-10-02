@@ -1,0 +1,23 @@
+// routes/locations.js
+// GET /api/locations -> distinct cities that currently have active events
+// (populates the location dropdown on the search page)
+const express = require('express');
+const { pool } = require('../event_db');
+
+const router = express.Router();
+
+router.get('/', async (req, res, next) => {
+  try {
+    const [rows] = await pool.query(
+      `SELECT DISTINCT city
+       FROM events
+       WHERE is_suspended = 0 AND city IS NOT NULL AND city <> ''
+       ORDER BY city ASC`
+    );
+    res.json({ count: rows.length, locations: rows.map(r => r.city) });
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;
