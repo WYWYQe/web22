@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charity Events | Search Events</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation (present on every page) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">CE</span>
+        <span class="brand-text">
+          Charity Events
+          <small>Supporting local causes</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="search.html" class="active">Search Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <div class="section-head">
+        <h1>Search events</h1>
+        <p class="muted">
+          Filter by date range, location and category. You can use one filter on its own,
+          combine several, or leave everything empty to list every event.
+        </p>
+      </div>
+
+      <!-- Filter form -->
+      <form id="filter-form" class="filter-form" novalidate>
+        <div class="field">
+          <label for="filter-date-from">Date from</label>
+          <input type="date" id="filter-date-from" name="dateFrom">
+          <small class="hint">Leave empty for any starting date.</small>
+        </div>
+
+        <div class="field">
+          <label for="filter-date-to">Date to</label>
+          <input type="date" id="filter-date-to" name="dateTo">
+          <small class="hint">Leave empty for any ending date.</small>
+        </div>
+
+        <div class="field">
+          <label for="filter-city">Location</label>
+          <select id="filter-city" name="city">
+            <option value="">Any location</option>
+          </select>
+          <small class="hint">Options are loaded from the API.</small>
+        </div>
+
+        <div class="field">
+          <label for="filter-category">Category</label>
+          <select id="filter-category" name="categoryId">
+            <option value="">Any category</option>
+          </select>
+          <small class="hint">Number in brackets = active events in that category.</small>
+        </div>
+
+        <div class="field field-actions">
+          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="button" id="clear-filters" class="btn btn-ghost">Clear Filters</button>
+        </div>
+      </form>
+
+      <!-- Results -->
+      <div class="section-head">
+        <h2>Results</h2>
+        <p id="status" class="status" role="status">Choose your filters and press Search.</p>
+      </div>
+
+      <div id="results" class="card-grid"></div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Charity Events &mdash; connecting local causes with the people who support them.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charity Events | Event Details</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation (present on every page) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">CE</span>
+        <span class="brand-text">
+          Charity Events
+          <small>Supporting local causes</small>
+        </span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search Events</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <p id="status" class="status" role="status">Loading event&hellip;</p>
+
+      <!-- Event detail (filled in by js/event.js) -->
+      <article id="event-detail" hidden>
+
+        <p class="back-row">
+          <a class="back-link" href="index.html">&larr; Back to home</a>
+          <a class="back-link" href="search.html">Search more events</a>
+        </p>
+
+        <header class="detail-head">
+          <p class="badge-row">
+            <span id="d-category" class="badge badge-category"></span>
+            <span id="d-status" class="badge"></span>
+          </p>
+          <h1 id="d-name"></h1>
+          <p id="d-summary" class="lead"></p>
+        </header>
+
+        <div class="detail-media" id="d-media"></div>
+
+        <div class="detail-grid">
+
+          <section class="detail-main">
+            <h2>About this event</h2>
+            <p id="d-description"></p>
+
+            <h2>Why we are fundraising</h2>
+            <p id="d-purpose"></p>
+
+            <h2>Goal vs progress</h2>
+            <div id="d-progress-wrap">
+              <div class="progress">
+                <div class="progress-bar" id="d-progress-bar"></div>
+              </div>
+              <p class="progress-text" id="d-progress-text"></p>
+            </div>
+            <p id="d-no-goal" class="muted" hidden>This event does not have a fundraising goal.</p>
+          </section>
+
+          <aside class="detail-side">
+            <h2>Event details</h2>
+            <dl class="detail-list">
+              <dt>Date</dt><dd id="d-date"></dd>
+              <dt>Time</dt><dd id="d-time"></dd>
+              <dt>Venue</dt><dd id="d-venue"></dd>
+              <dt>Address</dt><dd id="d-address"></dd>
+              <dt>City</dt><dd id="d-city"></dd>
+              <dt>Ticket</dt><dd id="d-price"></dd>
+            </dl>
+
+            <button type="button" id="register-btn" class="btn btn-primary btn-block">Register Now</button>
+
+            <h2>Organised by</h2>
+            <p class="org-name" id="d-org"></p>
+            <p class="muted" id="d-org-mission"></p>
+            <ul class="contact-list" id="d-org-contact"></ul>
+          </aside>
+
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Charity Events &mdash; connecting local causes with the people who support them.</p>
+    </div>
+  </footer>
+
+  <!-- Register modal -->
+  <div class="modal-overlay" id="register-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Registration</h2>
+      <p>This feature is currently under construction.</p>
+      <p class="modal-actions">
+        <button type="button" class="btn btn-primary" id="modal-close">Close</button>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/event.js"></script>
+</body>
+</html>
