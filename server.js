@@ -15,15 +15,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());   // parse JSON request bodies
 
-// Simple request log - useful when demonstrating the data flow in the video.
+// Log every request so it is visible in the terminal while the API runs.
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()}  ${req.method} ${req.originalUrl}`);
   next();
-});
-
-// Health check - confirms the API itself is up.
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'charity-events-api' });
 });
 
 // Resource routes

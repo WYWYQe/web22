@@ -2,7 +2,7 @@
 // GET /api/events       -> collection of active events (home page + search page)
 // GET /api/events/:id   -> one event with full details (event details page)
 const express = require('express');
-const { pool } = require('../event_db');
+const { getConnection } = require('../event_db');
 
 const router = express.Router();
 
@@ -70,7 +70,8 @@ router.get('/', async (req, res, next) => {
       params.push(n);
     }
 
-    const [rows] = await pool.query(sql, params);
+    const db = await getConnection();
+    const [rows] = await db.query(sql, params);
     res.json({ count: rows.length, events: rows });
   } catch (err) {
     next(err);
@@ -84,7 +85,8 @@ router.get('/:id', async (req, res, next) => {
     if (!Number.isInteger(id) || id < 1) {
       return res.status(400).json({ error: 'Event id must be a positive integer' });
     }
-    const [rows] = await pool.query(
+    const db = await getConnection();
+    const [rows] = await db.query(
       `SELECT e.*,
               c.category_name,
               o.org_name, o.mission, o.email, o.phone, o.website,

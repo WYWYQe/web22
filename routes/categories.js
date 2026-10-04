@@ -1,13 +1,14 @@
 // routes/categories.js
 // GET /api/categories -> all event categories (populates the search page filter)
 const express = require('express');
-const { pool } = require('../event_db');
+const { getConnection } = require('../event_db');
 
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const [rows] = await pool.query(
+    const db = await getConnection();
+    const [rows] = await db.query(
       `SELECT c.category_id, c.category_name, c.description,
               COUNT(e.event_id) AS event_count
        FROM categories c
